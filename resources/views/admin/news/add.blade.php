@@ -13,6 +13,7 @@
         @endif
     </div>
     <form action="{{ route('admin.category.store') }}" method="POST">
+        @csrf
         <div class="mb-3">
             <label for="title" class="form-label" >Заголовок</label>
             <input class="form-control" name="title" value="{{old('title')}}">

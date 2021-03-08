@@ -3,7 +3,8 @@
 @section('title', 'Order')
 
 @section('content')
-    <form action="#" method="POST">
+    <form action="{{ route('order.store') }}" method="POST">
+        @csrf
         <div class="mb-3">
             <label for="name" class="form-label" >Имя заказчика</label>
             <input class="form-control" name="name" value="{{old('name')}}">

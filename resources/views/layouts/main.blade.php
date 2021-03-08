@@ -43,10 +43,10 @@
                     <a class="nav-link" href="{{ route('admin.news.index') }}">Админка</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('order') }}">Заказ</a>
+                    <a class="nav-link" href="{{ route('order.create') }}">Заказ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('feedback') }}">Оставить отзыв</a>
+                    <a class="nav-link" href="{{ route('feedback.create') }}">Оставить отзыв</a>
                 </li>
 
             </ul>
