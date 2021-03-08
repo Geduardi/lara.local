@@ -64,19 +64,19 @@ class Controller extends BaseController
         '1' => [
             'id'          => '1',
             'name'        => 'Цифрове технологии',
-            'description' => 'Компьютеры. Телефоны. Интернет.',
+            'description' => 'Компьютеры. Интернет.',
             'photo'       => 'http://placeimg.com/640/480/tech?random=1',
         ],
         '2' => [
             'id'          => '2',
             'name'        => 'Экономика',
-            'description' => 'Цифровая энергетика. Макроэкономика. Потребительский рынок. Промышленность.',
+            'description' => 'Цифровая энергетика. Макроэкономика.',
             'photo'       => 'http://placeimg.com/640/480/arch',
         ],
         '3' => [
             'id'          => '3',
             'name'        => 'Наука',
-            'description' => 'Информатика. Космос. Биология. Технологии.',
+            'description' => 'Информатика. Космос. Технологии.',
             'photo'       => 'http://placeimg.com/640/480/tech?random=2',
         ],
         '4' => [
