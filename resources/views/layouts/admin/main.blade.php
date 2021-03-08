@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js"></script>
     <style>
         .module {
             width: 250px;
@@ -34,21 +35,11 @@
                     <a class="nav-link" href="{{ route('home') }}">Главная <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('category') }}">Рубрики</a>
+                    <a class="nav-link" href="{{ route('admin.category.index') }}">Рубрики</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('news') }}">Новости</a>
+                    <a class="nav-link" href="{{ route('admin.news.index') }}">Новости</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.news.index') }}">Админка</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('order') }}">Заказ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('feedback') }}">Оставить отзыв</a>
-                </li>
-
             </ul>
         </div>
     </nav>
