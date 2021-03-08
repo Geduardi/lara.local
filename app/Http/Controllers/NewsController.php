@@ -23,7 +23,7 @@ class NewsController extends Controller
             return $item['categoryId'] == $categoryId;
         });
 
-        return view('category_news', compact('news', 'category'));
+        return view('news.category_news', compact('news', 'category'));
     }
 
     /**
@@ -38,6 +38,11 @@ class NewsController extends Controller
         }
 
         $news = $this->news[$id];
-        return view('news', compact('news'));
+        return view('news.news', compact('news'));
+    }
+
+    public function index(){
+        $news = $this->news;
+        return view('news.index', compact('news'));
     }
 }
