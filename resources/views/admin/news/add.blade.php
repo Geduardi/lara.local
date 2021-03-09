@@ -24,8 +24,8 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="description" class=" form-label">Описание новости</label>
-            <input class="form-control" name="description" value="{{old('description')}}">
+            <label for="short_description" class=" form-label">Описание новости</label>
+            <input class="form-control" name="short_description" value="{{old('short_description')}}">
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Изображение</label>
@@ -33,7 +33,7 @@
         </div>
         <div class="input-group">
             <span class="input-group-text">Текст статьи</span>
-            <textarea class="form-control" name="text" value="{{old('text')}}"></textarea>
+            <textarea class="form-control" name="description" value="{{old('description')}}"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

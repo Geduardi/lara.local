@@ -15,7 +15,15 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 191);
+            $table->text('short_description')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image', 255)->default('http://placehold.it/640x480')->nullable();
+            $table->enum('status', ['draft', 'published', 'blocked'])->default('draft');
             $table->timestamps();
+            $table->index(['status']);
+
+            $table->foreignId('category_id')->constrained('categories');
         });
     }
 

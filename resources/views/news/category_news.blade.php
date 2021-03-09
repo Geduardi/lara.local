@@ -5,18 +5,18 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">{{ $category['name'] }}</h1>
+            <h1 class="text-center">{{ $category->title }}</h1>
         </div>
     </div>
 
     @forelse ($news as $oneNews)
         <div class="row mt-3">
             <div class="col-md-6">
-                <img src="{{ $oneNews['photo'] }}" class="img-fluid" alt="Responsive image">
+                <img src="{{ $oneNews->image }}" class="img-fluid" alt="Responsive image">
             </div>
             <div class="col-md-6 module">
-                <h2><a href="{{ route('news.id', ['id' => $oneNews['id']]) }}" class="badge badge-light">{{ $oneNews['title'] }}</a></h2>
-                <p class="line-clamp">{{ $oneNews['shortText'] }}</p>
+                <h2><a href="{{ route('news.id', ['id' => $oneNews->id]) }}" class="badge badge-light">{{ $oneNews->title }}</a></h2>
+                <p class="line-clamp">{{ $oneNews->short_description }}</p>
             </div>
         </div>
         <hr>

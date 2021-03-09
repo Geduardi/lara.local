@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -13,15 +15,17 @@ class NewsController extends Controller
      */
     public function allByCategory(string $categoryId)
     {
-        if (empty($this->categories[$categoryId])) {
+        $objCategory = New Category();
+        $category = $objCategory->getCategory($categoryId);
+        if (empty($category)) {
             return  redirect('category');
         }
-
-        $category = $this->categories[$categoryId];
-
-        $news = array_filter($this->news, function ($item) use ($categoryId) {
-            return $item['categoryId'] == $categoryId;
-        });
+        $objNews = new News();
+        $news = $objNews->getNewsByCategory($categoryId);
+//        dd($news);
+//        $news = array_filter($objNews->getNews(), function ($item) use ($categoryId) {
+//            return $item['categoryId'] == $categoryId;
+//        });
 
         return view('news.category_news', compact('news', 'category'));
     }
@@ -33,16 +37,19 @@ class NewsController extends Controller
      */
     public function one(string $id)
     {
-        if (empty($this->news[$id])) {
-            return redirect('category');
-        }
+//        if (empty($this->news[$id])) {
+//            return redirect('category');
+//        }
 
-        $news = $this->news[$id];
+        $objNews = new News();
+        $news = $objNews->getNewsOne($id);
+
         return view('news.news', compact('news'));
     }
 
     public function index(){
-        $news = $this->news;
+        $objNews = new News();
+        $news = $objNews->getNews();
         return view('news.index', compact('news'));
     }
 }

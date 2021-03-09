@@ -11,11 +11,11 @@
         @endif
                 <div class="col-md-4">
                     <div class="card mx-auto" style="width: 18rem; height: 420px">
-                        <img src="{{ $category['photo'] }}" class="card-img-top" alt="{{ $category['name'] }}">
+                        <img src="{{ $category->image }}" class="card-img-top" alt="{{ $category->title }}">
                         <div class="card-body">
-                            <h4 class="card-title">{{ $category['name'] }}</h4>
-                            <p class="card-text">{{ $category['description'] }}</p>
-                            <a href="{{ route('category.news', ['categoryId' => $category['id']]) }}" class="btn btn-dark" style="position: absolute; bottom: 20px">Читать</a>
+                            <h4 class="card-title">{{ $category->title }}</h4>
+                            <p class="card-text">{{ $category->description }}</p>
+                            <a href="{{ route('category.news', ['categoryId' => $category->id]) }}" class="btn btn-dark" style="position: absolute; bottom: 20px">Читать</a>
                         </div>
                     </div>
                 </div>

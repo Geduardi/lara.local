@@ -37,6 +37,3 @@ Route::group(['prefix'=>'news'],function (){
 
 Route::view('/feedback','feedback')->name('feedback');
 Route::view('/order','order')->name('order');
-
-
-//d
