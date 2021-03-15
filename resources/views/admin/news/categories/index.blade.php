@@ -3,7 +3,9 @@
 @section('title', 'Category admin')
 
 @section('content')
-
+    @if(session()->has('success'))
+        <div class="alert alert-success">{{ session()->get('success') }}</div>
+    @endif
     @php $counter = 0; @endphp
     @foreach($categories as $category)
         @if($counter % 3 == 0)
@@ -14,9 +16,11 @@
                         <img src="{{ $category->image }}" class="card-img-top" alt="{{ $category->title }}">
                         <div class="card-body">
                             <h4 class="card-title">{{ $category->title }}</h4>
-                            <p class="card-text">#ID {{ $category->id }}</p>
+                            <p class="card-subtitle mb-2 text-muted">#ID {{ $category->id }}</p>
                             <p class="card-text">{{ $category->description }}</p>
-                            <a href="{{ route('category.news', ['categoryId' => $category->id]) }}" class="btn btn-dark" style="position: absolute; bottom: 20px">Читать</a>
+                            <a href="{{ route('admin.category.show', ['category' => $category]) }}" class="btn btn-dark" >Читать</a>
+                            <a href="{{ route('admin.category.edit', ['category' => $category]) }}" class="btn btn-primary" >Ред.</a>
+                            <a href="{{ route('admin.category.destroy', ['category' => $category]) }}" class="btn btn-light" >Удалить</a>
                         </div>
                     </div>
                 </div>
@@ -36,6 +40,6 @@
         </div>
         </a>
     </div>
-
+    {{ $categories->links() }}
 
 @endsection
