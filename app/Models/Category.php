@@ -10,15 +10,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function getCategories()
-    {
-        return DB::table('categories')
-//            ->select('id', 'title', 'slug', 'description', 'image', 'created_at')
-            ->get();
-    }
+//    protected $table = "categories";
+//    protected $primaryKey = "id";
+    protected $fillable = [
+            'title', 'slug', 'description', 'image'
+        ];
 
-    public function getCategory(int $id)
-    {
-        return DB::table('categories')->find($id);
-    }
 }
