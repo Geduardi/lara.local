@@ -48,8 +48,7 @@ class NewsController extends Controller
     }
 
     public function index(){
-        $objNews = new News();
-        $news = $objNews->getNews();
+        $news = News::all();
         return view('news.index', compact('news'));
     }
 }

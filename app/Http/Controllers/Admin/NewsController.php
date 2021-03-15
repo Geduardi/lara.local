@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -16,8 +17,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $objNews = new News();
-        $news = $objNews->getNews();
+        $news = News::all();
         return view('admin.news.index', compact('news'));
     }
 
@@ -39,7 +39,16 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $data = $request->only('title', 'category','short_description','description','image');
+        $create = News::create($data);
+        if ($create){
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно добавлена');
+        }
+        return back()->with('errors', 'Не удалось добавить запись');
     }
 
     /**
@@ -50,7 +59,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
