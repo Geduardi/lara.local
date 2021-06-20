@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use function PHPUnit\Framework\isEmpty;
 
 class CategoryController extends Controller
 {
@@ -23,6 +24,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(5);
+
         return view('admin.news.categories.index',[
             'categories' => $categories,
         ]);
@@ -50,8 +52,12 @@ class CategoryController extends Controller
             'title' => 'required'
         ]);
 
-        $data = $request->only('title', 'description');
+        $data = $request->only('title', 'description','image');
         $data['slug'] = Str::slug($data['title']);
+//        dd($data);
+        if (!$data['image']){
+            unset($data['image']);
+        }
         $create = Category::create($data);
         if ($create){
             return redirect()->route('admin.category.index')->with('success', 'Запись успешно добавлена');
@@ -123,6 +129,17 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $hasNews = News::all()->where('category_id', $category->id);
+        if ($hasNews->isEmpty()){
+            $delete = $category->delete();
+        } else {
+            return back()->with('errors', 'У категории есть новости');
+        }
+
+
+        if ($delete){
+            return redirect()->route('admin.category.index')->with('success', 'Запись успешно удалена');
+        }
+        return back()->with('errors', 'Не удалось удалить запись');
     }
 }

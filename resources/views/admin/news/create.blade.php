@@ -1,9 +1,7 @@
 @extends('layouts.admin.main')
 
 @section('title', 'News add')
-{{--todo Сделать оповещение об успешной операции
-todo Переименовать в create
---}}
+
 @section('content')
     <div>
         @if($errors->any())
@@ -14,11 +12,7 @@ todo Переименовать в create
             @endforeach
         @endif
     </div>
-    @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-    @endif
+
     <form action="{{ route('admin.news.store') }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -28,7 +22,10 @@ todo Переименовать в create
         <div class="mb-3">
             <label for="category_id" class="form-label">Выбор категории</label>
             <select name="category_id" class="form-control">
-                <option value="">Выбрать</option>
+                <option value="">Выберите категорию</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-3">

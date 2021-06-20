@@ -4,6 +4,7 @@
 
 @section('content')
     <div>
+
         @if($errors->any())
             @foreach($errors->all() as $error)
                 <div class="alert alert-danger">
@@ -12,6 +13,7 @@
             @endforeach
         @endif
     </div>
+
     <form action="{{ route('admin.news.update', ['news' => $news]) }}" method="POST">
         @csrf
         @method('PUT')
@@ -22,7 +24,13 @@
         <div class="mb-3">
             <label for="category_id" class="form-label">Выбор категории</label>
             <select name="category_id" class="form-control">
-                <option value="">Выбрать</option>
+                @foreach($categories as $category)
+                    <option
+                    @if ($news->category_id == $category->id)
+                        selected="selected"
+                    @endif
+                        value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
             </select>
         </div>
         <div class="mb-3">

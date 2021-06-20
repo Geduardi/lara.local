@@ -4,6 +4,7 @@
 
 @section('content')
 
+
     @forelse ($news as $oneNews)
         <div class="row mt-3">
             <div class="col-md-6">

@@ -32,7 +32,6 @@ class NewsSeeder extends Seeder
                 'short_description' => $faker->realText(50),
                 'description' => $faker->realText(200),
                 'image' => $faker->imageUrl(),
-//                'image' => 'https://source.unsplash.com/random/640x480',
                 'category_id' => $categories[array_rand($categories)]->id,
                 'created_at' => now(),
                 'updated_at' => now()

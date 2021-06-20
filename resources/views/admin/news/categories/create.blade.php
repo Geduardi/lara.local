@@ -12,6 +12,7 @@
             @endforeach
         @endif
     </div>
+
     <form action="{{ route('admin.category.store') }}" method="POST">
         @csrf
         <div class="mb-3">

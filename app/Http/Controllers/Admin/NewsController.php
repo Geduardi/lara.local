@@ -28,7 +28,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.add');
+        $categories = Category::all();
+        return view('admin.news.create', ['categories' => $categories]);
     }
 
     /**
@@ -40,11 +41,17 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'category_id' => 'required'
         ]);
 
-        $data = $request->only('title', 'category','short_description','description','image');
+        $data = $request->only('title', 'category_id','short_description','description','image');
+        $data['category_id'] = (int) $data['category_id'];
+        if (!$data['image']){
+            unset($data['image']);
+        }
         $create = News::create($data);
+
         if ($create){
             return redirect()->route('admin.news.index')->with('success', 'Запись успешно добавлена');
         }
@@ -57,9 +64,12 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(News $news)
     {
-
+        if ($news){
+            return view('news.news', compact('news'));
+        }
+        return back()->with('errors', 'Новости с таким ID не существует.');
     }
 
     /**
@@ -68,9 +78,13 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(News $news)
     {
-        //
+        $categories = Category::all();
+        return view('admin.news.edit',[
+            'news' => $news,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -80,9 +94,23 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $data = $request->only('title', 'category_id','short_description','description','image');
+        $data['category_id'] = (int) $data['category_id'];
+        if (!$data['image']){
+            unset($data['image']);
+        }
+        $save = $news->fill($data)->save();
+        if ($save){
+            return redirect()->route('admin.news.index')->with('success', 'Запись успешно обновилась');
+        }
+        return back()->with('errors', 'Не удалось обновить запись');
     }
 
     /**
@@ -91,8 +119,13 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        //
+        $delete = $news->delete();
+
+        if ($delete){
+            return back()->with('success', 'Запись успешно удалена');
+        }
+        return back()->with('errors', 'Не удалось удалить запись');
     }
 }

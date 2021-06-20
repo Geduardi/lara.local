@@ -12,6 +12,7 @@
             @endforeach
         @endif
     </div>
+
     <form action="{{ route('admin.category.update', ['category' => $category]) }}" method="POST">
         @csrf
         @method('PUT')
