@@ -1,7 +1,9 @@
 @extends('layouts.admin.main')
 
 @section('title', 'News add')
-
+{{--todo Сделать оповещение об успешной операции
+todo Переименовать в create
+--}}
 @section('content')
     <div>
         @if($errors->any())
@@ -12,6 +14,11 @@
             @endforeach
         @endif
     </div>
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <form action="{{ route('admin.news.store') }}" method="POST">
         @csrf
         <div class="mb-3">
