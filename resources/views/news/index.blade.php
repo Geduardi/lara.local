@@ -3,7 +3,11 @@
 @section('title', 'News')
 
 @section('content')
-
+    @if(session()->has('errors'))
+        <div class="alert alert-danger">
+            {{ session()->get('errors') }}
+        </div>
+    @endif
 
     @forelse ($news as $oneNews)
         <div class="row mt-3">

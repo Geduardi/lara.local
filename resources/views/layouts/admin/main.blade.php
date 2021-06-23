@@ -45,11 +45,7 @@
     </nav>
     <br>
     {{--    todo Сделать подсветку активной страницы в меню--}}
-    @if(session()->has('errors'))
-        <div class="alert alert-danger">
-            {{ session()->get('errors') }}
-        </div>
-    @endif
+
     @if(session()->has('success'))
         <div class="alert alert-success">
             {{ session()->get('success') }}

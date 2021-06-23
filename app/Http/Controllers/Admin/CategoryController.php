@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryEditRequest;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Contracts\Foundation\Application;
@@ -43,16 +45,15 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CategoryCreateRequest $request
      * @return Response|RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryCreateRequest $request)
     {
-        $request->validate([
-            'title' => 'required'
-        ]);
 
-        $data = $request->only('title', 'description','image');
+
+//        $data = $request->only('title', 'description','image');
+        $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
 //        dd($data);
         if (!$data['image']){
@@ -100,16 +101,15 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param CategoryEditRequest $request
      * @param Category $category
      * @return Response|RedirectResponse
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryEditRequest $request, Category $category)
     {
-        $request->validate([
-            'title' => 'required'
-        ]);
-        $data = $request->only('title', 'description');
+
+//        $data = $request->only('title', 'description');
+        $data = $request->validated();
         $data['slug'] = Str::slug($data['title']);
 //        $category->title = "New Data";
 //        $category->description = "data description";

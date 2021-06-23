@@ -3,7 +3,11 @@
 @section('title', 'News admin')
 {{--todo Сделать пагинацию--}}
 @section('content')
-
+    @if(session()->has('errors'))
+        <div class="alert alert-danger">
+            {{ session()->get('errors') }}
+        </div>
+    @endif
     <div class="row mt-3 mx-auto ">
         <a href="{{ route('admin.news.create') }}" >
         <div class="col-md-6">

@@ -16,7 +16,7 @@ class CreateNewsTable extends Migration
         Schema::create('news', function (Blueprint $table) {
             $table->id();
             $table->string('title', 191);
-            $table->text('short_description')->nullable();
+            $table->text('short_description');
             $table->text('description')->nullable();
             $table->string('image', 255)->default('https://via.placeholder.com/640x480');
             $table->enum('status', ['draft', 'published', 'blocked'])->default('draft');

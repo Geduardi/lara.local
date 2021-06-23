@@ -3,7 +3,11 @@
 @section('title', 'Category admin')
 
 @section('content')
-
+    @if(session()->has('errors'))
+        <div class="alert alert-danger">
+            {{ session()->get('errors') }}
+        </div>
+    @endif
 
     @php $counter = 0; @endphp
     @foreach($categories as $category)

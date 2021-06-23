@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title', 191);
             $table->string('slug', 191);
-            $table->text('description')->nullable();
+            $table->text('description');
             $table->string('image', 255)->default('https://via.placeholder.com/640x480')->nullable();
             $table->timestamps();
         });

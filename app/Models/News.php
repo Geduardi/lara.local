@@ -12,7 +12,7 @@ class News extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'category', 'short_description', 'description' => 'http://placehold.it/640x480', 'image', 'category_id'
+        'title', 'category', 'short_description', 'description', 'image', 'category_id'
     ];
 
     public function category():BelongsTo
