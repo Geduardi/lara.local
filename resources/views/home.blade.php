@@ -1,10 +1,23 @@
-@extends('layouts.main')
-
-@section('title', 'Welcome page')
+@extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto" style="margin-top: 300px">
-        <h1 class="text-center">Новостной портал</h1><br>
-        <p class="text-center"><a href="{{ route('category') }}" class="btn btn-dark btn-lg">Читать</a></p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
