@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ParserController;
+use App\Http\Controllers\SocialiteController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +55,10 @@ Route::group(['middleware' => 'auth'],function (){
         });
     });
 });
+
+Route::group(['middleware' => 'guest'],function(){
+    Route::get('/auth/vk', [SocialiteController::class, 'init'])->name('vk.init');
+    Route::get('/auth/vk/callback', [SocialiteController::class, 'callback'])->name('vk.callback');
+});
+
+Route::get('/parser/news', ParserController::class);

@@ -116,9 +116,9 @@ class CategoryController extends Controller
 //        $category->save();
         $save = $category->fill($data)->save();
         if ($save){
-            return redirect()->route('admin.category.index')->with('success', 'Запись успешно обновилась');
+            return redirect()->route('admin.category.index')->with('success', __('messages.admin.categories.success'));
         }
-        return back()->with('errors', 'Не удалось обновить запись');
+        return back()->with('errors', __('messages.admin.categories.fail'));
     }
 
     /**

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             SourceSeeder::class,
             AdminUserSeeder::class,
+            VKUserSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
     }
