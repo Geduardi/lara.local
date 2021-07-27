@@ -30,6 +30,7 @@ class EventServiceProvider extends ServiceProvider
         SocialiteWasCalled::class => [
             // ... other providers
             'SocialiteProviders\\VKontakte\\VKontakteExtendSocialite@handle',
+            'SocialiteProviders\\Facebook\\FacebookExtendSocialite@handle',
         ],
     ];
 

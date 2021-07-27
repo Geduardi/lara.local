@@ -8,9 +8,9 @@ use XmlParser;
 
 class ParserService
 {
-    protected array $parserLinks = [
+    public array $parserLinks = [
         'https://news.yandex.ru/army.rss',
-        'https://news.yandex.ru/avto.rss',
+        'https://news.yandex.ru/auto.rss',
         'https://news.yandex.ru/music.rss',
 
     ];
